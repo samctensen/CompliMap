@@ -8,6 +8,7 @@
 import Foundation
 class Compliment {
     private var text: String
+    // timeStamp and geoTag need better types
     private var timeStamp: Int
     private var geoTag: String
     private var numVotes: Int
