@@ -13,7 +13,6 @@
 		2267D5742885E3AA00E98944 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5702885E3AA00E98944 /* StateManager.swift */; };
 		2267D5782885E3C100E98944 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5752885E3C100E98944 /* Comment.swift */; };
 		2267D5792885E3C100E98944 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5762885E3C100E98944 /* User.swift */; };
-		2267D57A2885E3C100E98944 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5772885E3C100E98944 /* Post.swift */; };
 		2267D5832885E3E600E98944 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57B2885E3E500E98944 /* PostsList.swift */; };
 		2267D5842885E3E600E98944 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57C2885E3E500E98944 /* MainTabView.swift */; };
 		2267D5852885E3E600E98944 /* NewPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57D2885E3E500E98944 /* NewPostForm.swift */; };
@@ -49,6 +48,7 @@
 		22F3F146288609B400F2DC6B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F145288609B400F2DC6B /* MapView.swift */; };
 		22F3F14E28861AAB00F2DC6B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */; };
 		22F3F1502886367600F2DC6B /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14F2886367500F2DC6B /* PostRow.swift */; };
+		22FA01E82887642D00DE0420 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA01E72887642D00DE0420 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,6 @@
 		2267D5702885E3AA00E98944 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		2267D5752885E3C100E98944 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		2267D5762885E3C100E98944 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2267D5772885E3C100E98944 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = ../../../Socialcademy/Socialcademy/Models/Post.swift; sourceTree = "<group>"; };
 		2267D57B2885E3E500E98944 /* PostsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
 		2267D57C2885E3E500E98944 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2267D57D2885E3E500E98944 /* NewPostForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostForm.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		22F3F145288609B400F2DC6B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		22F3F14F2886367500F2DC6B /* PostRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
+		22FA01E72887642D00DE0420 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				2267D5752885E3C100E98944 /* Comment.swift */,
-				2267D5772885E3C100E98944 /* Post.swift */,
+				22FA01E72887642D00DE0420 /* Post.swift */,
 				2267D5762885E3C100E98944 /* User.swift */,
 			);
 			path = Models;
@@ -348,11 +348,11 @@
 				22F3F1502886367600F2DC6B /* PostRow.swift in Sources */,
 				2267D59E2885E40D00E98944 /* CommentsViewModel.swift in Sources */,
 				2267D5AB2885E43F00E98944 /* AuthService.swift in Sources */,
-				2267D57A2885E3C100E98944 /* Post.swift in Sources */,
 				2267D5A72885E42500E98944 /* PostsRepository.swift in Sources */,
 				2267D59F2885E40D00E98944 /* ProfileViewModel.swift in Sources */,
 				2267D5902885E3F600E98944 /* ProfileImage.swift in Sources */,
 				2267D5A22885E40D00E98944 /* FormViewModel.swift in Sources */,
+				22FA01E82887642D00DE0420 /* Post.swift in Sources */,
 				2267D5842885E3E600E98944 /* MainTabView.swift in Sources */,
 				2267D58A2885E3E600E98944 /* CommentsList.swift in Sources */,
 				2267D5A42885E40D00E98944 /* PostRowViewModel.swift in Sources */,
