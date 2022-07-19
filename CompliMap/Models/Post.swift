@@ -1,8 +1,8 @@
 //
 //  Post.swift
-//  Socialcademy
+//  CompliMap
 //
-//  Created by John Royal on 1/9/22.
+//  Created by Sam Christensen on 7/18/22.
 //
 
 import Foundation
