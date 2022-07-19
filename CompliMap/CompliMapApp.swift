@@ -16,7 +16,7 @@ struct CompliMapApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AuthView()
         }
     }
 }
