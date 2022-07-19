@@ -1,3 +1,10 @@
+//
+//  MapViewModel.swift
+//  CompliMap
+//
+//  Created by Sam Christensen on 7/18/22.
+//
+
 import MapKit
 
 enum MapDetails {
