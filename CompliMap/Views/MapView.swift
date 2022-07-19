@@ -11,6 +11,7 @@ import SwiftUI
 struct MapView: View {
     
     @StateObject var viewModel: MapViewModel
+    @State private var showNewPostForm = false
 
     var body: some View {
         Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
@@ -18,6 +19,14 @@ struct MapView: View {
             .accentColor(Color(.systemPurple))
             .onAppear() {
                 viewModel.checkLocationServicesEnabled()
+            }
+            .navigationTitle("Map")
+            .toolbar {
+                Button {
+                    showNewPostForm = true
+                } label: {
+                    Label("New Post", systemImage: "heart.text.square")
+                }
             }
     }
 }

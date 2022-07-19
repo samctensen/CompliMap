@@ -61,7 +61,7 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
 
 struct PostsRepository: PostsRepositoryProtocol {
     let user: User
-    let postsReference = Firestore.firestore().collection("posts_v2")
+    let postsReference = Firestore.firestore().collection("posts")
     let favoritesReference = Firestore.firestore().collection("favorites")
     
     func fetchAllPosts() async throws -> [Post] {
