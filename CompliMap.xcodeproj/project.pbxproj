@@ -18,7 +18,6 @@
 		2267D5842885E3E600E98944 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57C2885E3E500E98944 /* MainTabView.swift */; };
 		2267D5852885E3E600E98944 /* NewPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57D2885E3E500E98944 /* NewPostForm.swift */; };
 		2267D5862885E3E600E98944 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57E2885E3E500E98944 /* ProfileView.swift */; };
-		2267D5872885E3E600E98944 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D57F2885E3E500E98944 /* PostRow.swift */; };
 		2267D5882885E3E600E98944 /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5802885E3E600E98944 /* CommentRow.swift */; };
 		2267D5892885E3E600E98944 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5812885E3E600E98944 /* AuthView.swift */; };
 		2267D58A2885E3E600E98944 /* CommentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5822885E3E600E98944 /* CommentsList.swift */; };
@@ -49,6 +48,7 @@
 		22EF7C482823550500700181 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EF7C472823550500700181 /* Preview Assets.xcassets */; };
 		22F3F146288609B400F2DC6B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F145288609B400F2DC6B /* MapView.swift */; };
 		22F3F14E28861AAB00F2DC6B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */; };
+		22F3F1502886367600F2DC6B /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14F2886367500F2DC6B /* PostRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +64,6 @@
 		2267D57C2885E3E500E98944 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2267D57D2885E3E500E98944 /* NewPostForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostForm.swift; sourceTree = "<group>"; };
 		2267D57E2885E3E500E98944 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		2267D57F2885E3E500E98944 /* PostRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		2267D5802885E3E600E98944 /* CommentRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
 		2267D5812885E3E600E98944 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		2267D5822885E3E600E98944 /* CommentsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsList.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		22EF7C472823550500700181 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22F3F145288609B400F2DC6B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		22F3F14F2886367500F2DC6B /* PostRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,8 +190,8 @@
 				2267D5802885E3E600E98944 /* CommentRow.swift */,
 				2267D5822885E3E600E98944 /* CommentsList.swift */,
 				2267D57C2885E3E500E98944 /* MainTabView.swift */,
+				22F3F14F2886367500F2DC6B /* PostRow.swift */,
 				2267D57D2885E3E500E98944 /* NewPostForm.swift */,
-				2267D57F2885E3E500E98944 /* PostRow.swift */,
 				2267D57B2885E3E500E98944 /* PostsList.swift */,
 				2267D57E2885E3E500E98944 /* ProfileView.swift */,
 				22F3F145288609B400F2DC6B /* MapView.swift */,
@@ -338,7 +338,6 @@
 				2267D5A12885E40D00E98944 /* PostsViewModel.swift in Sources */,
 				2267D5912885E3F600E98944 /* EmptyListView.swift in Sources */,
 				2267D5712885E3AA00E98944 /* StorageFile.swift in Sources */,
-				2267D5872885E3E600E98944 /* PostRow.swift in Sources */,
 				2267D5852885E3E600E98944 /* NewPostForm.swift in Sources */,
 				2267D5A82885E42500E98944 /* CommentsRepository.swift in Sources */,
 				2267D5892885E3E600E98944 /* AuthView.swift in Sources */,
@@ -346,6 +345,7 @@
 				2267D5862885E3E600E98944 /* ProfileView.swift in Sources */,
 				22F3F14E28861AAB00F2DC6B /* MapViewModel.swift in Sources */,
 				2267D5932885E3F700E98944 /* Alert+Error.swift in Sources */,
+				22F3F1502886367600F2DC6B /* PostRow.swift in Sources */,
 				2267D59E2885E40D00E98944 /* CommentsViewModel.swift in Sources */,
 				2267D5AB2885E43F00E98944 /* AuthService.swift in Sources */,
 				2267D57A2885E3C100E98944 /* Post.swift in Sources */,

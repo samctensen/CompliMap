@@ -1,6 +1,5 @@
 //
 //  PostRow.swift
-//  Socialcademy
 //
 //  Created by John Royal on 1/9/22.
 //
