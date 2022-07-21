@@ -7,34 +7,91 @@
 
 import SwiftUI
 
+enum ProfileTab {
+    case myPosts
+    case map
+}
+
 struct ProfileView: View {
+    @EnvironmentObject private var factory: ViewModelFactory
     @StateObject var viewModel: ProfileViewModel
+    @State private var selectedTab: ProfileTab = .myPosts
     
     var body: some View {
-        NavigationView {
             VStack {
-                Spacer()
                 ProfileImage(url: viewModel.imageURL)
-                    .frame(width: 200, height: 200)
-                Spacer()
+                    .frame(width: 100, height: 100)
+                ImagePickerButton(imageURL: $viewModel.imageURL) {
+                    Label("Choose Image", systemImage: "photo.fill")
+                }
                 Text(viewModel.name)
                     .font(.title2)
                     .bold()
                     .padding()
-                ImagePickerButton(imageURL: $viewModel.imageURL) {
-                    Label("Choose Image", systemImage: "photo.fill")
+                ProfileTabView(selectedTab: $selectedTab)
+                VStack {
+                    switch selectedTab {
+                        case .myPosts:
+                            NavigationView {
+                                PostsList(viewModel: factory.makePostsViewModel(filter: .author(viewModel.user)))
+                            }
+                        case .map:
+                            NavigationView {
+                                MapView(viewModel: factory.makeMapsViewModel())
+                            }
+                    }
                 }
-                Spacer()
             }
             .navigationTitle("Profile")
             .toolbar {
                 Button("Sign Out", action: {
                     viewModel.signOut()
                 })
+                
             }
-        }
         .alert("Error", error: $viewModel.error)
         .disabled(viewModel.isWorking)
+    }
+}
+
+struct ProfileTabView: View {
+    @Binding var selectedTab: ProfileTab
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Button {
+                selectedTab = .myPosts
+            }
+            label: {
+                VStack {
+                    Image(systemName: "list.bullet.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                    Text("Your Compliments")
+                        .font(.caption2)
+                }
+                .foregroundColor(selectedTab == .myPosts ? .blue : .primary )
+            }
+            Spacer()
+            Button {
+                selectedTab = .map
+            }
+            label: {
+                VStack {
+                    Image(systemName: "map.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                    Text("Compliment Map")
+                        .font(.caption2)
+                }
+                .foregroundColor(selectedTab == .map ? .blue : .primary )
+            }
+            Spacer()
+            .buttonStyle(TabButtonStyle())
+        }
     }
 }
 

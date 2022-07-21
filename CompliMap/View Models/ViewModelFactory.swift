@@ -12,6 +12,8 @@ class ViewModelFactory: ObservableObject {
     private let user: User
     private let authService: AuthService
     
+    //private var postsRepository: PostsRepositoryProtocol
+    
     init(user: User, authService: AuthService) {
         self.user = user
         self.authService = authService

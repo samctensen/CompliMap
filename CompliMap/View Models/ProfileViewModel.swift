@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 class ProfileViewModel: ObservableObject, StateManager {
     @Published var name: String
+    @Published var user: User
     @Published var imageURL: URL? {
         didSet {
             imageURLDidChange(from: oldValue)
@@ -22,6 +23,7 @@ class ProfileViewModel: ObservableObject, StateManager {
     
     init(user: User, authService: AuthService) {
         self.name = user.name
+        self.user = user
         self.imageURL = user.imageURL
         self.authService = authService
     }

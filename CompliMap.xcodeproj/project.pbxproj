@@ -37,11 +37,11 @@
 		2267D5A82885E42500E98944 /* CommentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5A62885E42500E98944 /* CommentsRepository.swift */; };
 		2267D5AB2885E43F00E98944 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5AA2885E43F00E98944 /* AuthService.swift */; };
 		2267D5AE2885E4FD00E98944 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2267D5AD2885E4FD00E98944 /* FirebaseAuth */; };
-		2267D5B02885E50F00E98944 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2267D5AF2885E50F00E98944 /* FirebaseStorage */; };
 		2267D5B22885E6D000E98944 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2267D5B12885E6D000E98944 /* GoogleService-Info.plist */; };
 		22736C9428777DCC003A1C6D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9328777DCC003A1C6D /* FirebaseAnalytics */; };
 		22736C9628777DCC003A1C6D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9528777DCC003A1C6D /* FirebaseFirestore */; };
 		22736C9828777DCC003A1C6D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9728777DCC003A1C6D /* FirebaseFirestoreSwift */; };
+		22CBA20C288A024A00419276 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 22CBA20B288A024A00419276 /* FirebaseStorage */; };
 		22EF7C412823550400700181 /* CompliMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF7C402823550400700181 /* CompliMapApp.swift */; };
 		22EF7C452823550500700181 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EF7C442823550500700181 /* Assets.xcassets */; };
 		22EF7C482823550500700181 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EF7C472823550500700181 /* Preview Assets.xcassets */; };
@@ -49,7 +49,6 @@
 		22F3F14E28861AAB00F2DC6B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */; };
 		22F3F1502886367600F2DC6B /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3F14F2886367500F2DC6B /* PostRow.swift */; };
 		22FA01E82887642D00DE0420 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA01E72887642D00DE0420 /* Post.swift */; };
-		22FA01EA2887653B00DE0420 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22FA01E92887653B00DE0420 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,7 +101,7 @@
 				22736C9428777DCC003A1C6D /* FirebaseAnalytics in Frameworks */,
 				22736C9628777DCC003A1C6D /* FirebaseFirestore in Frameworks */,
 				22736C9828777DCC003A1C6D /* FirebaseFirestoreSwift in Frameworks */,
-				2267D5B02885E50F00E98944 /* FirebaseStorage in Frameworks */,
+				22CBA20C288A024A00419276 /* FirebaseStorage in Frameworks */,
 				2267D5AE2885E4FD00E98944 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +271,7 @@
 				22736C9528777DCC003A1C6D /* FirebaseFirestore */,
 				22736C9728777DCC003A1C6D /* FirebaseFirestoreSwift */,
 				2267D5AD2885E4FD00E98944 /* FirebaseAuth */,
-				2267D5AF2885E50F00E98944 /* FirebaseStorage */,
+				22CBA20B288A024A00419276 /* FirebaseStorage */,
 			);
 			productName = CompliMap;
 			productReference = 22EF7C3D2823550400700181 /* CompliMap.app */;
@@ -319,7 +318,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22FA01EA2887653B00DE0420 /* Info.plist in Resources */,
 				22EF7C482823550500700181 /* Preview Assets.xcassets in Resources */,
 				22EF7C452823550500700181 /* Assets.xcassets in Resources */,
 				2267D5B22885E6D000E98944 /* GoogleService-Info.plist in Resources */,
@@ -499,7 +497,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CompliMap/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "CompliMap needs your Camera to take a profile picture";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CompliMap needs your location to track your movements through your day and pull local compliments near you.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow for culture";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CompliMap needs your location to track your movements through your day and pull local compliments near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -530,7 +531,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CompliMap/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "CompliMap needs your Camera to take a profile picture";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "CompliMap needs your location to track your movements through your day and pull local compliments near you.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow for culture";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "CompliMap needs your location to track your movements through your day and pull local compliments near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -589,11 +593,6 @@
 			package = 22736C9228777DCB003A1C6D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		2267D5AF2885E50F00E98944 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 22736C9228777DCB003A1C6D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
 		22736C9328777DCC003A1C6D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22736C9228777DCB003A1C6D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -608,6 +607,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 22736C9228777DCB003A1C6D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		22CBA20B288A024A00419276 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22736C9228777DCB003A1C6D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
