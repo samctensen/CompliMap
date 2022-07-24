@@ -33,11 +33,11 @@ struct ProfileView: View {
                     switch selectedTab {
                         case .myPosts:
                             NavigationView {
-                                PostsList(viewModel: factory.makePostsViewModel(filter: .author(viewModel.user)))
+                                ProfilePostListView(viewModel: factory.makePostsViewModel(filter: .author(viewModel.user)), locationViewModel: factory.makeMapsViewModel())
                             }
                         case .map:
                             NavigationView {
-                                MapView(viewModel: factory.makeMapsViewModel())
+                                ProfileMapView(mapViewModel: factory.makeMapsViewModel(), postViewModel: factory.makePostsViewModel(filter: .author(viewModel.user)))
                             }
                     }
                 }

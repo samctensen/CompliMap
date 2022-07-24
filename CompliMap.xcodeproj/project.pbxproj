@@ -41,6 +41,8 @@
 		22736C9428777DCC003A1C6D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9328777DCC003A1C6D /* FirebaseAnalytics */; };
 		22736C9628777DCC003A1C6D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9528777DCC003A1C6D /* FirebaseFirestore */; };
 		22736C9828777DCC003A1C6D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22736C9728777DCC003A1C6D /* FirebaseFirestoreSwift */; };
+		2276A9B5288CCFA5004B502B /* ProfilePostListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276A9B4288CCFA5004B502B /* ProfilePostListView.swift */; };
+		2276A9B7288CD111004B502B /* ProfileMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276A9B6288CD111004B502B /* ProfileMapView.swift */; };
 		22CBA20C288A024A00419276 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 22CBA20B288A024A00419276 /* FirebaseStorage */; };
 		22EF7C412823550400700181 /* CompliMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF7C402823550400700181 /* CompliMapApp.swift */; };
 		22EF7C452823550500700181 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EF7C442823550500700181 /* Assets.xcassets */; };
@@ -82,6 +84,8 @@
 		2267D5A62885E42500E98944 /* CommentsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsRepository.swift; sourceTree = "<group>"; };
 		2267D5AA2885E43F00E98944 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2267D5B12885E6D000E98944 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2276A9B4288CCFA5004B502B /* ProfilePostListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostListView.swift; sourceTree = "<group>"; };
+		2276A9B6288CD111004B502B /* ProfileMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMapView.swift; sourceTree = "<group>"; };
 		22EF7C3D2823550400700181 /* CompliMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompliMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF7C402823550400700181 /* CompliMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompliMapApp.swift; sourceTree = "<group>"; };
 		22EF7C442823550500700181 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -193,8 +197,10 @@
 				22F3F14F2886367500F2DC6B /* PostRow.swift */,
 				2267D57D2885E3E500E98944 /* NewPostForm.swift */,
 				2267D57B2885E3E500E98944 /* PostsList.swift */,
+				2276A9B4288CCFA5004B502B /* ProfilePostListView.swift */,
 				2267D57E2885E3E500E98944 /* ProfileView.swift */,
 				22F3F145288609B400F2DC6B /* MapView.swift */,
+				2276A9B6288CD111004B502B /* ProfileMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				2267D5912885E3F600E98944 /* EmptyListView.swift in Sources */,
 				2267D5712885E3AA00E98944 /* StorageFile.swift in Sources */,
 				2267D5852885E3E600E98944 /* NewPostForm.swift in Sources */,
+				2276A9B5288CCFA5004B502B /* ProfilePostListView.swift in Sources */,
 				2267D5A82885E42500E98944 /* CommentsRepository.swift in Sources */,
 				2267D5892885E3E600E98944 /* AuthView.swift in Sources */,
 				2267D5882885E3E600E98944 /* CommentRow.swift in Sources */,
@@ -347,6 +354,7 @@
 				2267D5932885E3F700E98944 /* Alert+Error.swift in Sources */,
 				22F3F1502886367600F2DC6B /* PostRow.swift in Sources */,
 				2267D59E2885E40D00E98944 /* CommentsViewModel.swift in Sources */,
+				2276A9B7288CD111004B502B /* ProfileMapView.swift in Sources */,
 				2267D5AB2885E43F00E98944 /* AuthService.swift in Sources */,
 				2267D5A72885E42500E98944 /* PostsRepository.swift in Sources */,
 				2267D59F2885E40D00E98944 /* ProfileViewModel.swift in Sources */,

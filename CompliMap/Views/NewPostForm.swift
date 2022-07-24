@@ -11,20 +11,17 @@ import SwiftUI
 
 struct NewPostForm: View {
     @StateObject var viewModel: FormViewModel<Post>
+    @StateObject var locationViewModel: MapViewModel
     
     @Environment(\.dismiss) private var dismiss
-    
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    TextField("Title", text: $viewModel.title)
-                }
-                //ImageSection(imageURL: $viewModel.imageURL)
                 Section("Content") {
                     TextEditor(text: $viewModel.content)
                         .multilineTextAlignment(.leading)
                 }
+                ImageSection(imageURL: $viewModel.imageURL)
                 Button(action: viewModel.submit) {
                     if viewModel.isWorking {
                         ProgressView()
@@ -40,6 +37,7 @@ struct NewPostForm: View {
             }
             .onSubmit(viewModel.submit)
             .navigationTitle("New Post")
+
         }
         .alert("Cannot Create Post", error: $viewModel.error)
         .disabled(viewModel.isWorking)
@@ -48,6 +46,7 @@ struct NewPostForm: View {
             dismiss()
         }
     }
+
 }
 
 // MARK: - ImageSection
@@ -78,6 +77,6 @@ private extension NewPostForm {
 
 struct NewPostForm_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostForm(viewModel: FormViewModel<Post>(initialValue: Post.testPost, action: { _ in }))
+        NewPostForm(viewModel: FormViewModel<Post>(initialValue: Post.testPost, action: { _ in }), locationViewModel: MapViewModel(user: User.testUser))
     }
 }

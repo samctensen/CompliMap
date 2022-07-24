@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import MapKit
 
-struct PostsList: View {
+struct ProfilePostListView: View {
     @StateObject public var viewModel: PostsViewModel
+    @StateObject public var locationViewModel: MapViewModel
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
@@ -36,6 +38,7 @@ struct PostsList: View {
                     ForEach(posts) { post in
                         if searchText.isEmpty || post.contains(searchText) {
                             PostRow(viewModel: viewModel.makePostRowViewModel(for: post))
+                            var postLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: post.latitude, longitude: post.longitude)
                         }
                     }
                     .searchable(text: $searchText)
@@ -43,21 +46,16 @@ struct PostsList: View {
                 }
             }
         }
-        .navigationTitle(viewModel.title)
         .onAppear {
             viewModel.fetchPosts()
         }
-        .toolbar {
-            Button {
-                showNewPostForm = true
-            } label: {
-                Label("New Post", systemImage: "heart.text.square")
-            }
+        .sheet(isPresented: $showNewPostForm) {
+            NewPostForm(viewModel: viewModel.makeNewPostViewModel(lat: locationViewModel.latitude, lon: locationViewModel.longitude), locationViewModel: locationViewModel)
         }
     }
 }
 
-extension PostsList {
+extension ProfilePostListView {
     struct RootView: View {
         @StateObject var viewModel: PostsViewModel
         
@@ -70,7 +68,7 @@ extension PostsList {
 }
 
 #if DEBUG
-struct PostsList_Previews: PreviewProvider {
+struct ProfilePostListView_Previews: PreviewProvider {
     static var previews: some View {
         ListPreview(state: .loaded([Post.testPost]))
         ListPreview(state: .empty)

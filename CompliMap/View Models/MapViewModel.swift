@@ -14,13 +14,19 @@ enum MapDetails {
 
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     @Published var user: User
+    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
+    public var latitude: Double
+    public var longitude: Double
+    public var postLocations: [CLLocationCoordinate2D]
     
     var locationManager: CLLocationManager?
     
     init(user: User) {
         self.user = user
+        latitude = 0
+        longitude = 0
+        postLocations = []
     }
     
     func checkLocationServicesEnabled() {
@@ -47,6 +53,8 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             case .authorizedAlways, .authorizedWhenInUse:
                 if locationManager.location != nil {
                     region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MapDetails.defaultSpan)
+                    latitude = locationManager.location!.coordinate.latitude
+                    longitude = locationManager.location!.coordinate.longitude
                 }
             @unknown default:
                 break

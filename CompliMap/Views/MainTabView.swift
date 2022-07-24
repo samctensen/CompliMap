@@ -40,29 +40,33 @@ struct MainTabView: View {
     
     var body: some View {
         VStack {
+            let postViewModel = factory.makePostsViewModel()
+            let mapViewModel = factory.makeMapsViewModel()
             switch selectedTab {
                 case .feed:
                     NavigationView {
-                        PostsList(viewModel: factory.makePostsViewModel())
+                        PostsList(viewModel: postViewModel)
                     }
                 case .map:
                     NavigationView {
-                        MapView(viewModel: factory.makeMapsViewModel())
+                        MapView(viewModel: mapViewModel)
                     }
                 case .profile:
                     NavigationView {
                         ProfileView(viewModel: factory.makeProfileViewModel())
                     }
             }
-            CustomTabView(selectedTab: $selectedTab)
+            CustomTabView(postViewModel: postViewModel, mapViewModel: mapViewModel, selectedTab: $selectedTab)
                 .frame(height: 50)
         }
     }
 }
 
 struct CustomTabView: View {
+    public var postViewModel: PostsViewModel
+    public var mapViewModel: MapViewModel
     @Binding var selectedTab: Tab
-    public var showNewPostForm = false
+    @State private var showNewPostForm = false
     
     var body: some View {
         HStack {
@@ -112,7 +116,7 @@ struct CustomTabView: View {
                 .foregroundColor(selectedTab == .profile ? .blue : .primary )
             }
             Button {
-                //showNewPostForm = true
+                showNewPostForm.toggle()
             }
             label: {
                 ZStack {
@@ -128,6 +132,9 @@ struct CustomTabView: View {
                 .offset(y: -32)
             }
             .buttonStyle(TabButtonStyle())
+            .sheet(isPresented: $showNewPostForm) {
+                NewPostForm(viewModel: postViewModel.makeNewPostViewModel(lat: mapViewModel.latitude, lon: mapViewModel.longitude), locationViewModel: mapViewModel)
+            }
         }
     }
 }

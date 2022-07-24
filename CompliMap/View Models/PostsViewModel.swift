@@ -5,7 +5,9 @@
 //  Created by Sam Christensen on 7/18/22.
 //
 
+import MapKit
 import Foundation
+import SwiftUI
 
 @MainActor
 class PostsViewModel: ObservableObject {
@@ -14,6 +16,7 @@ class PostsViewModel: ObservableObject {
     }
     
     @Published var posts: Loadable<[Post]> = .loading
+    @Published var loadedPosts: [CLLocationCoordinate2D] = []
     
     private let filter: Filter
     private let postsRepository: PostsRepositoryProtocol
@@ -28,7 +31,7 @@ class PostsViewModel: ObservableObject {
         case .all:
             return "Posts"
         case let .author(author):
-            return "\(author.name)’s Posts"
+            return ""
         case .favorites:
             return "Favorites"
         }
@@ -45,9 +48,9 @@ class PostsViewModel: ObservableObject {
         }
     }
     
-    func makeNewPostViewModel() -> FormViewModel<Post> {
+    func makeNewPostViewModel(lat: Double, lon: Double) -> FormViewModel<Post> {
         return FormViewModel<Post>(
-            initialValue: Post(title: "", content: "", author: postsRepository.user),
+            initialValue: Post(title: "", content: "", author: postsRepository.user, latitude: lat, longitude: lon),
             action: { [weak self] post in
                 try await self?.postsRepository.create(post)
                 self?.posts.value?.insert(post, at: 0)

@@ -12,6 +12,7 @@ class ViewModelFactory: ObservableObject {
     private let user: User
     private let authService: AuthService
     
+    
     //private var postsRepository: PostsRepositoryProtocol
     
     init(user: User, authService: AuthService) {
@@ -32,7 +33,9 @@ class ViewModelFactory: ObservableObject {
     }
     
     func makeMapsViewModel() -> MapViewModel {
-        return MapViewModel(user: user)
+        let mapsViewModel = MapViewModel(user: user)
+        mapsViewModel.checkLocationServicesEnabled()
+        return mapsViewModel
     }
 }
 
