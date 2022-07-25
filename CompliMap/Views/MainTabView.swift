@@ -49,7 +49,7 @@ struct MainTabView: View {
                     }
                 case .map:
                     NavigationView {
-                        MapView(viewModel: mapViewModel)
+                        MapView(locationViewModel: mapViewModel)
                     }
                 case .profile:
                     NavigationView {

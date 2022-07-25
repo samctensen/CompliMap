@@ -14,18 +14,45 @@ struct ProfileMapView: View {
     @StateObject var postViewModel: PostsViewModel
 
     var body: some View {
-        Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true)
+        var mapView = Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true)
             .ignoresSafeArea()
             .accentColor(Color(.systemPurple))
             .onAppear() {
                 mapViewModel.checkLocationServicesEnabled()
                 
             }
+        Group {
+            switch postViewModel.posts {
+            case .loading:
+                ProgressView()
+            case let .error(error):
+                EmptyListView(
+                    title: "Cannot Load Posts",
+                    message: error.localizedDescription,
+                    retryAction: {
+                        postViewModel.fetchPosts()
+                    }
+                )
+            case .empty:
+                EmptyListView(
+                    title: "No Posts",
+                    message: "There aren’t any posts yet."
+                )
+            case let .loaded(posts):
+                ScrollView {
+                    ForEach(posts) { post in
+                       // var postFlag = MKPointAnnotation()
+                        //postFlag.coordinate = CLLocationCoordinate2D(latitude: post.latitude, longitude: post.longitude)
+                    }
+                    .animation(.none, value: posts)
+                }
+            }
+        }
     }
 }
 
 struct ProfileMapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(viewModel: MapViewModel(user: User.testUser))
+        MapView(locationViewModel: MapViewModel(user: User.testUser))
     }
 }

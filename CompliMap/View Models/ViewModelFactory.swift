@@ -4,13 +4,15 @@
 //
 //  Created by Sam Christensen on 7/18/22.
 //
-
+import Firebase
+import FirebaseFirestore
 import Foundation
 
 @MainActor
 class ViewModelFactory: ObservableObject {
     private let user: User
     private let authService: AuthService
+    private var posts: [Post]
     
     
     //private var postsRepository: PostsRepositoryProtocol
@@ -18,7 +20,13 @@ class ViewModelFactory: ObservableObject {
     init(user: User, authService: AuthService) {
         self.user = user
         self.authService = authService
+        self.posts = []
     }
+    
+    func observePosts() {
+        let postsReference = Firestore.firestore().collection("posts")
+    }
+    
     
     func makePostsViewModel(filter: PostsViewModel.Filter = .all) -> PostsViewModel {
         return PostsViewModel(filter: filter, postsRepository: PostsRepository(user: user))

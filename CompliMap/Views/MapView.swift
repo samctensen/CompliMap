@@ -10,15 +10,15 @@ import SwiftUI
 
 struct MapView: View {
     
-    @StateObject var viewModel: MapViewModel
+    @StateObject var locationViewModel: MapViewModel
     @State private var showNewPostForm = false
 
     var body: some View {
-        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+        Map(coordinateRegion: $locationViewModel.region, showsUserLocation: true)
             .ignoresSafeArea()
             .accentColor(Color(.systemPurple))
             .onAppear() {
-                viewModel.checkLocationServicesEnabled()
+                locationViewModel.checkLocationServicesEnabled()
             }
             .navigationTitle("Map")
             .toolbar {
@@ -29,10 +29,11 @@ struct MapView: View {
                 }
             }
     }
+    
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(viewModel: MapViewModel(user: User.testUser))
+        MapView(locationViewModel: MapViewModel(user: User.testUser))
     }
 }

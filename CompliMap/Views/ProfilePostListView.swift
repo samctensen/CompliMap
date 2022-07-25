@@ -82,9 +82,9 @@ struct ProfilePostListView_Previews: PreviewProvider {
         
         var body: some View {
             let postsRepository = PostsRepositoryStub(state: state)
-            let viewModel = PostsViewModel(postsRepository: postsRepository)
+            let locationViewModel = PostsViewModel(postsRepository: postsRepository)
             NavigationView {
-                PostsList(viewModel: viewModel)
+                PostsList(viewModel: locationViewModel)
                     .environmentObject(ViewModelFactory.preview)
             }
         }
