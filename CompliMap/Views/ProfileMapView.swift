@@ -12,42 +12,17 @@ struct ProfileMapView: View {
     
     @StateObject var mapViewModel: MapViewModel
     @StateObject var postViewModel: PostsViewModel
-
+    @StateObject var repoV2: PostsRepositoryV2
+    
     var body: some View {
-        var mapView = Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true)
-            .ignoresSafeArea()
-            .accentColor(Color(.systemPurple))
-            .onAppear() {
-                mapViewModel.checkLocationServicesEnabled()
-                
+        Map(
+            coordinateRegion: $mapViewModel.region,
+            showsUserLocation: false,
+            annotationItems: repoV2.postCoordinates,
+            annotationContent: { location in
+                MapPin(coordinate: location.coordinate, tint: .red)
             }
-        Group {
-            switch postViewModel.posts {
-            case .loading:
-                ProgressView()
-            case let .error(error):
-                EmptyListView(
-                    title: "Cannot Load Posts",
-                    message: error.localizedDescription,
-                    retryAction: {
-                        postViewModel.fetchPosts()
-                    }
-                )
-            case .empty:
-                EmptyListView(
-                    title: "No Posts",
-                    message: "There aren’t any posts yet."
-                )
-            case let .loaded(posts):
-                ScrollView {
-                    ForEach(posts) { post in
-                       // var postFlag = MKPointAnnotation()
-                        //postFlag.coordinate = CLLocationCoordinate2D(latitude: post.latitude, longitude: post.longitude)
-                    }
-                    .animation(.none, value: posts)
-                }
-            }
-        }
+        )
     }
 }
 

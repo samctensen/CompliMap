@@ -37,7 +37,7 @@ struct ProfileView: View {
                             }
                         case .map:
                             NavigationView {
-                                ProfileMapView(mapViewModel: factory.makeMapsViewModel(), postViewModel: factory.makePostsViewModel(filter: .author(viewModel.user)))
+                                ProfileMapView(mapViewModel: factory.makeMapsViewModel(), postViewModel: factory.makePostsViewModel(filter: .author(viewModel.user)), repoV2: PostsRepositoryV2(user: viewModel.user))
                             }
                     }
                 }

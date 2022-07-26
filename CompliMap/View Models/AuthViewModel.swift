@@ -15,8 +15,6 @@ class AuthViewModel: ObservableObject {
     
     init() {
         authService.$user.assign(to: &$user)
-        var posts = PostsRepositoryV2()
-        posts.fetchAllPosts()
     }
     
     func makeViewModelFactory() -> ViewModelFactory? {
