@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PostsList: View {
     @StateObject public var viewModel: PostsViewModel
+    @StateObject public var postRepo: PostsRepositoryV2
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
@@ -33,7 +34,7 @@ struct PostsList: View {
                 )
             case let .loaded(posts):
                 ScrollView {
-                    ForEach(posts) { post in
+                    ForEach(postRepo.allPosts) { post in
                         if searchText.isEmpty || post.contains(searchText) {
                             PostRow(viewModel: viewModel.makePostRowViewModel(for: post))
                         }
@@ -60,10 +61,11 @@ struct PostsList: View {
 extension PostsList {
     struct RootView: View {
         @StateObject var viewModel: PostsViewModel
+        @StateObject var postsRepo: PostsRepositoryV2
         
         var body: some View {
             NavigationView {
-                PostsList(viewModel: viewModel)
+                PostsList(viewModel: viewModel, postRepo: postsRepo)
             }
         }
     }
@@ -84,9 +86,10 @@ struct PostsList_Previews: PreviewProvider {
         
         var body: some View {
             let postsRepository = PostsRepositoryStub(state: state)
+            let postsRepo2 = PostsRepositoryV2(user: User.testUser)
             let locationViewModel = PostsViewModel(postsRepository: postsRepository)
             NavigationView {
-                PostsList(viewModel: locationViewModel)
+                PostsList(viewModel: locationViewModel, postRepo: postsRepo2)
                     .environmentObject(ViewModelFactory.preview)
             }
         }

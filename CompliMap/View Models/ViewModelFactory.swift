@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 class ViewModelFactory: ObservableObject {
-    private let user: User
+    public let user: User
     private let authService: AuthService
     private var posts: [Post]
     

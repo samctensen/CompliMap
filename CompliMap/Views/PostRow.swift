@@ -73,7 +73,7 @@ private extension PostRow {
         
         var body: some View {
             NavigationLink {
-                PostsList(viewModel: factory.makePostsViewModel(filter: .author(author)))
+                PostsList(viewModel: factory.makePostsViewModel(filter: .author(author)), postRepo: PostsRepositoryV2(user: author))
             } label: {
                 HStack {
                     ProfileImage(url: author.imageURL)

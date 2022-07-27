@@ -20,33 +20,33 @@ struct MapLocation: Identifiable {
 }
 
 class PostsRepositoryV2: ObservableObject {
-    @Published var posts: [Post] = []
-    @Published var postCoordinates: [MapLocation] = []
+    @Published var allPosts: [Post] = []
+    @Published var otherUserPosts: [Post] = []
+    @Published var myPosts: [Post] = []
+    @Published var allPostLocations: [MapLocation] = []
+    @Published var otherUserPostLocations: [MapLocation] = []
+    @Published var myPostLocations: [MapLocation] = []
     @Published var database = Firestore.firestore()
     @Published var user: User
     
     init(user: User) {
         self.user = user
-        loadPostsFromCollection()
+        loadMyPosts()
+        loadAllPosts()
     }
     
-    func loadPostsFromCollection() {
-        var query = database.collection("posts").whereField("author.id", isEqualTo: user.id)
-        query.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
+    func loadPostsFromCollection(snapshotDocs: [QueryDocumentSnapshot]) -> ([Post], [MapLocation]) {
+        var postsReturn: [Post] = []
+        var locationsReturn: [MapLocation] = []
+                for document in snapshotDocs {
                     let postdata = document.data()
                     
                     let author = postdata["author"] as? [String:Any]
                     
                     let authorID = author?["id"] as? String ?? ""
                     let authorName = author?["name"] as? String ?? ""
-                    let authorPic = author?["imageURL"] as? String ?? ""
-                    let authorImageURL = URL(string: authorPic)
+                    let authorimage = author?["imageURL"] as? String ?? ""
+                    let authorImageURL = URL(string: authorimage)
 //                    let authorID = author["id"] as? String
 //                    let authorPic = author["imageURL"] as? String ?? ""
 //                    let authorName = author["name"] as? String ?? ""
@@ -54,6 +54,8 @@ class PostsRepositoryV2: ObservableObject {
                     let postIDString = postdata["id"] as? String ?? ""
                     let postIDUUID = UUID(uuidString: postIDString) ?? UUID()
                     let postContent = postdata["content"] as? String ?? ""
+                    let postImage = postdata["imageURL"] as? String ?? ""
+                    let postImageURL = URL(string: postImage)
                  
                     let dateFormatter = DateFormatter()
                     dateFormatter.locale = Locale(identifier: "en_US")
@@ -65,26 +67,59 @@ class PostsRepositoryV2: ObservableObject {
                     //let timeStampDate = dateFormatter.date(from: timestampString)
                     let latitude = postdata["latitude"] as? Double ?? 0
                     let longitude = postdata["longitude"] as? Double ?? 0
-                    let postCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                     
                     let postAuthor = User(id: authorID, name: authorName, imageURL: authorImageURL)
-                    let post = Post(title: "", content: postContent, author: postAuthor, imageURL: authorImageURL, isFavorite: false, timestamp: timestampString, id: postIDUUID, latitude: latitude, longitude: longitude)
-                    self.posts.append(post)
+                    let post = Post(title: "", content: postContent, author: postAuthor, imageURL: postImageURL, isFavorite: false, timestamp: timestampString, id: postIDUUID, latitude: latitude, longitude: longitude)
+                    postsReturn.append(post)
                     
                     let postCoordinateStructure = MapLocation(name: authorName, latitude: latitude, longitude: longitude)
-                    self.postCoordinates.append(postCoordinateStructure)
-                }
+                    locationsReturn.append(postCoordinateStructure)
+        }
+        return (postsReturn, locationsReturn)
+    }
+    
+    func loadMyPosts() {
+        let query = database.collection("posts").whereField("author.id", isEqualTo: user.id)
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                let returnTuple = self.loadPostsFromCollection(snapshotDocs: snapshot.documents)
+                self.myPosts = returnTuple.0
+                self.myPostLocations = returnTuple.1
+            }
+        }
+    }
+     
+    func loadUsersPosts(user: User) {
+        let query = database.collection("posts").whereField("author.id", isEqualTo: user.id)
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                let returnTuple = self.loadPostsFromCollection(snapshotDocs: snapshot.documents)
+                self.otherUserPosts = returnTuple.0
+                self.otherUserPostLocations = returnTuple.1
             }
         }
     }
     
-    func loadMyPosts() {
-        loadUsersPosts(user: self.user)
-    }
-     
-    func loadUsersPosts(user: User) {
-        posts.removeAll()
-        let postsReference = database.collection("posts").whereField("author.id", isEqualTo: user.id)
-        //loadPostsFromCollection(collectionReference: postsReference)
+    func loadAllPosts() {
+        let query = database.collection("posts")
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                let returnTuple = self.loadPostsFromCollection(snapshotDocs: snapshot.documents)
+                self.allPosts = returnTuple.0
+                self.allPostLocations = returnTuple.1
+            }
+        }
     }
 }

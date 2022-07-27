@@ -42,21 +42,22 @@ struct MainTabView: View {
         VStack {
             let postViewModel = factory.makePostsViewModel()
             let mapViewModel = factory.makeMapsViewModel()
+            let postsRepo = PostsRepositoryV2(user: factory.user)
             switch selectedTab {
                 case .feed:
                     NavigationView {
-                        PostsList(viewModel: postViewModel)
+                        PostsList(viewModel: postViewModel, postRepo: postsRepo)
                     }
                 case .map:
                     NavigationView {
-                        MapView(locationViewModel: mapViewModel)
+                        MapView(locationViewModel: mapViewModel, postsRepo: postsRepo)
                     }
                 case .profile:
                     NavigationView {
                         ProfileView(viewModel: factory.makeProfileViewModel())
                     }
             }
-            CustomTabView(postViewModel: postViewModel, mapViewModel: mapViewModel, selectedTab: $selectedTab)
+            CustomTabView(postViewModel: postViewModel, mapViewModel: mapViewModel, postsRepo: postsRepo, selectedTab: $selectedTab)
                 .frame(height: 50)
         }
     }
@@ -65,6 +66,8 @@ struct MainTabView: View {
 struct CustomTabView: View {
     public var postViewModel: PostsViewModel
     public var mapViewModel: MapViewModel
+    public var postsRepo: PostsRepositoryV2
+    
     @Binding var selectedTab: Tab
     @State private var showNewPostForm = false
     

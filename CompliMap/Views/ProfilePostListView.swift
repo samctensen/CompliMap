@@ -10,6 +10,7 @@ import MapKit
 
 struct ProfilePostListView: View {
     @StateObject public var viewModel: PostsViewModel
+    @StateObject public var postsRepo: PostsRepositoryV2
     @StateObject public var locationViewModel: MapViewModel
     
     @State private var searchText = ""
@@ -58,10 +59,11 @@ struct ProfilePostListView: View {
 extension ProfilePostListView {
     struct RootView: View {
         @StateObject var viewModel: PostsViewModel
+        @StateObject var postsRepo: PostsRepositoryV2
         
         var body: some View {
             NavigationView {
-                PostsList(viewModel: viewModel)
+                PostsList(viewModel: viewModel, postRepo: postsRepo)
             }
         }
     }
@@ -83,8 +85,9 @@ struct ProfilePostListView_Previews: PreviewProvider {
         var body: some View {
             let postsRepository = PostsRepositoryStub(state: state)
             let locationViewModel = PostsViewModel(postsRepository: postsRepository)
+            let postsRepo = PostsRepositoryV2(user: User.testUser)
             NavigationView {
-                PostsList(viewModel: locationViewModel)
+                PostsList(viewModel: locationViewModel, postRepo: postsRepo)
                     .environmentObject(ViewModelFactory.preview)
             }
         }
