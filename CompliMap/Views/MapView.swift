@@ -16,7 +16,7 @@ struct MapView: View {
     var body: some View {
         Map(
             coordinateRegion: $locationViewModel.region,
-            showsUserLocation: false,
+            showsUserLocation: true,
             annotationItems: postsRepo.allPostLocations,
             annotationContent: { location in
                 MapAnnotation(coordinate: location.coordinate) {

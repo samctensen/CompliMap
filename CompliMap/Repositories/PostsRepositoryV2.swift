@@ -57,19 +57,21 @@ class PostsRepositoryV2: ObservableObject {
                     let postImage = postdata["imageURL"] as? String ?? ""
                     let postImageURL = URL(string: postImage)
                  
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.locale = Locale(identifier: "en_US")
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                    let timestampString = postdata["timestamp"] as? Date ?? Date.now
-                    //let date = dateFormatter.date(from:timestampString) ?? Date.now
-                    
+                    //let timeStamp = postdata["timestamp"] as? Timestamp ?? Timestamp()
+                    let postTimestamp = postdata["timestamp"] as? Timestamp ?? Timestamp()
+                    let timezoneOffset =  Int64(TimeZone.current.secondsFromGMT())
+                    let epochDate = postTimestamp.seconds
+                    let timezoneEpochOffset = (epochDate + timezoneOffset)
+                     
+                    // 4) Finally, create a date using the seconds offset since 1970 for the local date.
+                    let timeZoneOffsetDate = Date(timeIntervalSince1970: TimeInterval(timezoneEpochOffset))
                    
                     //let timeStampDate = dateFormatter.date(from: timestampString)
                     let latitude = postdata["latitude"] as? Double ?? 0
                     let longitude = postdata["longitude"] as? Double ?? 0
                     
                     let postAuthor = User(id: authorID, name: authorName, imageURL: authorImageURL)
-                    let post = Post(title: "", content: postContent, author: postAuthor, imageURL: postImageURL, isFavorite: false, timestamp: timestampString, id: postIDUUID, latitude: latitude, longitude: longitude)
+                    let post = Post(title: "", content: postContent, author: postAuthor, imageURL: postImageURL, isFavorite: false, timestamp: timeZoneOffsetDate , id: postIDUUID, latitude: latitude, longitude: longitude)
                     postsReturn.append(post)
                     
                     let postCoordinateStructure = MapLocation(name: authorName, latitude: latitude, longitude: longitude)
@@ -109,7 +111,7 @@ class PostsRepositoryV2: ObservableObject {
     }
     
     func loadAllPosts() {
-        let query = database.collection("posts")
+        let query = database.collection("posts").order(by: "timestamp", descending: true)
         query.getDocuments { snapshot, error in
             guard error == nil else {
                 print(error!.localizedDescription)

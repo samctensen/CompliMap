@@ -23,11 +23,6 @@ class ViewModelFactory: ObservableObject {
         self.posts = []
     }
     
-    func observePosts() {
-        let postsReference = Firestore.firestore().collection("posts")
-    }
-    
-    
     func makePostsViewModel(filter: PostsViewModel.Filter = .all) -> PostsViewModel {
         return PostsViewModel(filter: filter, postsRepository: PostsRepository(user: user))
     }
