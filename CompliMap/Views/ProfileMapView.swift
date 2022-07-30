@@ -11,20 +11,35 @@ import SwiftUI
 struct ProfileMapView: View {
     
     @StateObject var mapViewModel: MapViewModel
-    @StateObject var postViewModel: PostsViewModel
     @StateObject var repoV2: PostsRepositoryV2
+    public var myProfile: Bool
     
     var body: some View {
-        Map(
-            coordinateRegion: $mapViewModel.region,
-            showsUserLocation: false,
-            annotationItems: repoV2.myPostLocations,
-            annotationContent: { location in
-                MapAnnotation(coordinate: location.coordinate) {
-                    LocationMapAnnotationView()
+        if myProfile {
+            Map(
+                coordinateRegion: $mapViewModel.region,
+                showsUserLocation: false,
+                annotationItems: repoV2.myPostLocations,
+                annotationContent: { location in
+                    MapAnnotation(coordinate: location.coordinate) {
+                        LocationMapAnnotationView()
+                    }
                 }
-            }
-        )
+            )
+        }
+        else {
+            Map(
+                coordinateRegion: $mapViewModel.region,
+                showsUserLocation: false,
+                annotationItems: repoV2.otherUserPostLocations,
+                annotationContent: { location in
+                    MapAnnotation(coordinate: location.coordinate) {
+                        LocationMapAnnotationView()
+                    }
+                }
+            )
+        }
+        
     }
 }
 

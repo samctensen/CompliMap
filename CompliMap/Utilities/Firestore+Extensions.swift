@@ -2,8 +2,9 @@
 //  Firestore+Extensions.swift
 //  CompliMap
 //
-//  Created by Sam Christensen on 7/18/22.
+//  Created by Sam Christensen
 //
+
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift

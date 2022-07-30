@@ -52,7 +52,7 @@ struct PostsList: View {
             Button {
                 showNewPostForm = true
             } label: {
-                Label("New Post", systemImage: "heart.text.square")
+                Label("Notifcations", systemImage: "bell")
             }
         }
     }

@@ -34,7 +34,7 @@ struct MapView: View {
                 
                 }
                 label: {
-                    Label("New Post", systemImage: "heart.text.square")
+                    Label("Notifcations", systemImage: "bell")
                 }
             }
     }

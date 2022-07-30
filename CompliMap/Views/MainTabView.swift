@@ -15,28 +15,7 @@ enum Tab {
 
 struct MainTabView: View {
     @EnvironmentObject private var factory: ViewModelFactory
-    @State private var selectedTab: Tab = .feed
-    
-//    var body: some View {
-//        TabView {
-//            NavigationView {
-//                PostsList(viewModel: factory.makePostsViewModel())
-//            }
-//            .tabItem {
-//                Label("Local Radius", systemImage: "mappin.and.ellipse")
-//            }
-//            NavigationView {
-//                MapView(viewModel: factory.makeMapsViewModel())
-//            }
-//            .tabItem {
-//                Label("Map", systemImage: "location.north.line")
-//            }
-//            ProfileView(viewModel: factory.makeProfileViewModel())
-//                .tabItem {
-//                    Label("Profile", systemImage: "brain.head.profile")
-//                }
-//        }
-//    }
+    @State public var selectedTab: Tab = .feed
     
     var body: some View {
         VStack {
@@ -64,6 +43,7 @@ struct MainTabView: View {
 }
 
 struct CustomTabView: View {
+    @Environment(\.colorScheme) var colorScheme
     public var postViewModel: PostsViewModel
     public var mapViewModel: MapViewModel
     public var postsRepo: PostsRepositoryV2
@@ -123,14 +103,26 @@ struct CustomTabView: View {
             }
             label: {
                 ZStack {
-                    Circle()
-                        .foregroundColor(.white)
-                        .frame(width: 80, height: 80)
-                        .shadow(radius: 2)
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .foregroundColor(Color.primary)
-                        .frame(width: 72, height: 72)
+                    if colorScheme == .dark {
+                        Circle()
+                            .foregroundColor(.black)
+                            .frame(width: 80, height: 80)
+                            .shadow(radius: 2)
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: 72, height: 72)
+                    }
+                    else {
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 80, height: 80)
+                            .shadow(radius: 2)
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .foregroundColor(Color.primary)
+                            .frame(width: 72, height: 72)
+                    }
                 }
                 .offset(y: -32)
             }

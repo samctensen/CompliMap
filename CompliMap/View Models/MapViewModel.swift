@@ -78,18 +78,17 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for location in locations {
-            if location.coordinate.latitude != latitude && location.coordinate.longitude != longitude {
-                latitude = location.coordinate.latitude
-                longitude = location.coordinate.longitude
-                let userLocationData = UserLocationData(user: user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: Date.now)
-                let document = userLocationsRef.document(userLocationData.id.uuidString)
-                do {
-                    try document.setData(from: userLocationData)
-                }
-                catch {
-                    
-                }
+        let location: CLLocation = locations.last ?? CLLocation(latitude: latitude, longitude: longitude)
+        if location.coordinate.latitude != latitude && location.coordinate.longitude != longitude {
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+            let userLocationData = UserLocationData(user: user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: Date.now)
+            let document = userLocationsRef.document(userLocationData.id.uuidString)
+            do {
+                try document.setData(from: userLocationData)
+            }
+            catch {
+                
             }
         }
     }

@@ -58,6 +58,8 @@ private extension User {
         self.id = firebaseUser.uid
         self.name = firebaseUser.displayName ?? ""
         self.imageURL = firebaseUser.photoURL
+        //self.followers = []
+        //self.following = []
     }
 }
 

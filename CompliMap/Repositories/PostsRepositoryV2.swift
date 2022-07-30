@@ -35,6 +35,11 @@ class PostsRepositoryV2: ObservableObject {
         loadAllPosts()
     }
     
+    init(otherUser: User) {
+        self.user = otherUser
+        loadUsersPosts(user: otherUser)
+    }
+    
     func loadPostsFromCollection(snapshotDocs: [QueryDocumentSnapshot]) -> ([Post], [MapLocation]) {
         var postsReturn: [Post] = []
         var locationsReturn: [MapLocation] = []

@@ -10,9 +10,12 @@
 		224FF5CC288DFFB8001C5546 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 224FF5CB288DFFB8001C5546 /* FirebaseFirestore */; };
 		224FF5CE288E0328001C5546 /* PostsRepositoryV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF5CD288E0328001C5546 /* PostsRepositoryV2.swift */; };
 		225106742894B25100B2EB7C /* UserLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225106732894B25100B2EB7C /* UserLocationData.swift */; };
+		225106762895BE4900B2EB7C /* OtherProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225106752895BE4900B2EB7C /* OtherProfileView.swift */; };
+		2251067A2895C1F600B2EB7C /* OtherProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225106792895C1F600B2EB7C /* OtherProfileViewModel.swift */; };
+		2251067E2895CAFD00B2EB7C /* OtherProfileMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251067D2895CAFD00B2EB7C /* OtherProfileMapView.swift */; };
+		225106802895E9B900B2EB7C /* Firestore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251067F2895E9B800B2EB7C /* Firestore+Extensions.swift */; };
 		2267D5712885E3AA00E98944 /* StorageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56D2885E3AA00E98944 /* StorageFile.swift */; };
 		2267D5722885E3AA00E98944 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56E2885E3AA00E98944 /* Loadable.swift */; };
-		2267D5732885E3AA00E98944 /* Firestore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56F2885E3AA00E98944 /* Firestore+Extensions.swift */; };
 		2267D5742885E3AA00E98944 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5702885E3AA00E98944 /* StateManager.swift */; };
 		2267D5782885E3C100E98944 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5752885E3C100E98944 /* Comment.swift */; };
 		2267D5792885E3C100E98944 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D5762885E3C100E98944 /* User.swift */; };
@@ -58,9 +61,12 @@
 /* Begin PBXFileReference section */
 		224FF5CD288E0328001C5546 /* PostsRepositoryV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepositoryV2.swift; sourceTree = "<group>"; };
 		225106732894B25100B2EB7C /* UserLocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationData.swift; sourceTree = "<group>"; };
+		225106752895BE4900B2EB7C /* OtherProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileView.swift; sourceTree = "<group>"; };
+		225106792895C1F600B2EB7C /* OtherProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewModel.swift; sourceTree = "<group>"; };
+		2251067D2895CAFD00B2EB7C /* OtherProfileMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileMapView.swift; sourceTree = "<group>"; };
+		2251067F2895E9B800B2EB7C /* Firestore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Extensions.swift"; sourceTree = "<group>"; };
 		2267D56D2885E3AA00E98944 /* StorageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageFile.swift; sourceTree = "<group>"; };
 		2267D56E2885E3AA00E98944 /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
-		2267D56F2885E3AA00E98944 /* Firestore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Extensions.swift"; sourceTree = "<group>"; };
 		2267D5702885E3AA00E98944 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		2267D5752885E3C100E98944 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		2267D5762885E3C100E98944 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				2267D59B2885E40D00E98944 /* AuthViewModel.swift */,
+				225106792895C1F600B2EB7C /* OtherProfileViewModel.swift */,
 				22F3F14D28861AAB00F2DC6B /* MapViewModel.swift */,
 				2267D5952885E40D00E98944 /* CommentRowViewModel.swift */,
 				2267D5962885E40D00E98944 /* CommentsViewModel.swift */,
@@ -169,7 +176,7 @@
 		222DF2E8287F9A7800C07F3E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2267D56F2885E3AA00E98944 /* Firestore+Extensions.swift */,
+				2251067F2895E9B800B2EB7C /* Firestore+Extensions.swift */,
 				2267D56E2885E3AA00E98944 /* Loadable.swift */,
 				2267D5702885E3AA00E98944 /* StateManager.swift */,
 				2267D56D2885E3AA00E98944 /* StorageFile.swift */,
@@ -206,6 +213,8 @@
 				2267D57E2885E3E500E98944 /* ProfileView.swift */,
 				22F3F145288609B400F2DC6B /* MapView.swift */,
 				2276A9B6288CD111004B502B /* ProfileMapView.swift */,
+				2251067D2895CAFD00B2EB7C /* OtherProfileMapView.swift */,
+				225106752895BE4900B2EB7C /* OtherProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -345,22 +354,24 @@
 			files = (
 				22EF7C412823550400700181 /* CompliMapApp.swift in Sources */,
 				2267D5A02885E40D00E98944 /* ViewModelFactory.swift in Sources */,
-				2267D5732885E3AA00E98944 /* Firestore+Extensions.swift in Sources */,
 				225106742894B25100B2EB7C /* UserLocationData.swift in Sources */,
 				2267D5792885E3C100E98944 /* User.swift in Sources */,
 				2267D5A12885E40D00E98944 /* PostsViewModel.swift in Sources */,
 				2267D5912885E3F600E98944 /* EmptyListView.swift in Sources */,
+				225106802895E9B900B2EB7C /* Firestore+Extensions.swift in Sources */,
 				2267D5712885E3AA00E98944 /* StorageFile.swift in Sources */,
 				2267D5852885E3E600E98944 /* NewPostForm.swift in Sources */,
 				2276A9B5288CCFA5004B502B /* ProfilePostListView.swift in Sources */,
 				2267D5A82885E42500E98944 /* CommentsRepository.swift in Sources */,
 				2267D5892885E3E600E98944 /* AuthView.swift in Sources */,
 				2267D5882885E3E600E98944 /* CommentRow.swift in Sources */,
+				2251067A2895C1F600B2EB7C /* OtherProfileViewModel.swift in Sources */,
 				2267D5862885E3E600E98944 /* ProfileView.swift in Sources */,
 				22F3F14E28861AAB00F2DC6B /* MapViewModel.swift in Sources */,
 				2267D5932885E3F700E98944 /* Alert+Error.swift in Sources */,
 				22F3F1502886367600F2DC6B /* PostRow.swift in Sources */,
 				2267D59E2885E40D00E98944 /* CommentsViewModel.swift in Sources */,
+				2251067E2895CAFD00B2EB7C /* OtherProfileMapView.swift in Sources */,
 				2276A9B7288CD111004B502B /* ProfileMapView.swift in Sources */,
 				2267D5AB2885E43F00E98944 /* AuthService.swift in Sources */,
 				2267D5A72885E42500E98944 /* PostsRepository.swift in Sources */,
@@ -369,6 +380,7 @@
 				2267D5A22885E40D00E98944 /* FormViewModel.swift in Sources */,
 				22FA01E82887642D00DE0420 /* Post.swift in Sources */,
 				2267D5842885E3E600E98944 /* MainTabView.swift in Sources */,
+				225106762895BE4900B2EB7C /* OtherProfileView.swift in Sources */,
 				2267D58A2885E3E600E98944 /* CommentsList.swift in Sources */,
 				2267D5A42885E40D00E98944 /* PostRowViewModel.swift in Sources */,
 				2267D5942885E3F700E98944 /* PrimaryButtonStyle.swift in Sources */,

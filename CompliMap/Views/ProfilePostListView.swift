@@ -39,7 +39,6 @@ struct ProfilePostListView: View {
                     ForEach(posts) { post in
                         if searchText.isEmpty || post.contains(searchText) {
                             PostRow(viewModel: viewModel.makePostRowViewModel(for: post))
-                            var postLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: post.latitude, longitude: post.longitude)
                         }
                     }
                     .searchable(text: $searchText)

@@ -72,15 +72,29 @@ private extension PostRow {
         @EnvironmentObject private var factory: ViewModelFactory
         
         var body: some View {
-            NavigationLink {
-                PostsList(viewModel: factory.makePostsViewModel(filter: .author(author)), postRepo: PostsRepositoryV2(user: author))
-            } label: {
-                HStack {
-                    ProfileImage(url: author.imageURL)
-                        .frame(width: 32, height: 32)
-                    Text(author.name)
-                        .font(.subheadline)
-                        .fontWeight(.medium)
+            if (factory.user.id != author.id) {
+                NavigationLink {
+                    OtherProfileView(viewModel: OtherProfileViewModel(user: author), postsRepo: PostsRepositoryV2(user: author))
+                }
+                label: {
+                    HStack {
+                        ProfileImage(url: author.imageURL)
+                            .frame(width: 32, height: 32)
+                        Text(author.name)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                    }
+                }
+            }
+            else {
+            label: do {
+                    HStack {
+                        ProfileImage(url: author.imageURL)
+                            .frame(width: 32, height: 32)
+                        Text(author.name)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                    }
                 }
             }
         }
