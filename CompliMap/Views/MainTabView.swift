@@ -129,7 +129,7 @@ struct CustomTabView: View {
                         .shadow(radius: 2)
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color.primary)
                         .frame(width: 72, height: 72)
                 }
                 .offset(y: -32)

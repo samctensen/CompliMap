@@ -6,6 +6,8 @@
 //
 
 import MapKit
+import Firebase
+import FirebaseFirestore
 
 enum MapDetails {
     static let startingLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -18,15 +20,15 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     public var latitude: Double
     public var longitude: Double
-    public var postLocations: [CLLocationCoordinate2D]
     
     var locationManager: CLLocationManager?
+    
+    var userLocationsRef = Firestore.firestore().collection("userLocationData")
     
     init(user: User) {
         self.user = user
         latitude = 0
         longitude = 0
-        postLocations = []
     }
     
     func checkLocationServicesEnabled() {
@@ -51,10 +53,20 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             case .denied:
                 print("Change CompliMap's location permissions in Settings")
             case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.startMonitoringSignificantLocationChanges()
+                locationManager.allowsBackgroundLocationUpdates = true
                 if locationManager.location != nil {
                     region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MapDetails.defaultSpan)
                     latitude = locationManager.location!.coordinate.latitude
                     longitude = locationManager.location!.coordinate.longitude
+                    let userLocationData = UserLocationData(user: user, latitude: latitude, longitude: longitude, timestamp: Date.now)
+                    let document = userLocationsRef.document(userLocationData.id.uuidString)
+                    do {
+                        try document.setData(from: userLocationData)
+                    }
+                    catch {
+                        
+                    }
                 }
             @unknown default:
                 break
@@ -63,5 +75,20 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for location in locations {
+            if location.coordinate.latitude != self.latitude && location.coordinate.longitude != self.longitude {
+                let userLocationData = UserLocationData(user: user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: Date.now)
+                let document = userLocationsRef.document(userLocationData.id.uuidString)
+                do {
+                    try document.setData(from: userLocationData)
+                }
+                catch {
+                    
+                }
+            }
+        }
     }
 }

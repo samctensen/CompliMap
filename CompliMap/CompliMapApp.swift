@@ -10,11 +10,14 @@ import Firebase
 
 @main
 struct CompliMapApp: App {
+    
+    
     init() {
         FirebaseApp.configure()
     }
     
     var body: some Scene {
+        
         WindowGroup {
             AuthView()
         }

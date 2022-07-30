@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		224FF5CC288DFFB8001C5546 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 224FF5CB288DFFB8001C5546 /* FirebaseFirestore */; };
 		224FF5CE288E0328001C5546 /* PostsRepositoryV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF5CD288E0328001C5546 /* PostsRepositoryV2.swift */; };
+		225106742894B25100B2EB7C /* UserLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225106732894B25100B2EB7C /* UserLocationData.swift */; };
 		2267D5712885E3AA00E98944 /* StorageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56D2885E3AA00E98944 /* StorageFile.swift */; };
 		2267D5722885E3AA00E98944 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56E2885E3AA00E98944 /* Loadable.swift */; };
 		2267D5732885E3AA00E98944 /* Firestore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2267D56F2885E3AA00E98944 /* Firestore+Extensions.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		224FF5CD288E0328001C5546 /* PostsRepositoryV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepositoryV2.swift; sourceTree = "<group>"; };
+		225106732894B25100B2EB7C /* UserLocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationData.swift; sourceTree = "<group>"; };
 		2267D56D2885E3AA00E98944 /* StorageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageFile.swift; sourceTree = "<group>"; };
 		2267D56E2885E3AA00E98944 /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		2267D56F2885E3AA00E98944 /* Firestore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Extensions.swift"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				2267D5752885E3C100E98944 /* Comment.swift */,
 				22FA01E72887642D00DE0420 /* Post.swift */,
 				2267D5762885E3C100E98944 /* User.swift */,
+				225106732894B25100B2EB7C /* UserLocationData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				22EF7C412823550400700181 /* CompliMapApp.swift in Sources */,
 				2267D5A02885E40D00E98944 /* ViewModelFactory.swift in Sources */,
 				2267D5732885E3AA00E98944 /* Firestore+Extensions.swift in Sources */,
+				225106742894B25100B2EB7C /* UserLocationData.swift in Sources */,
 				2267D5792885E3C100E98944 /* User.swift in Sources */,
 				2267D5A12885E40D00E98944 /* PostsViewModel.swift in Sources */,
 				2267D5912885E3F600E98944 /* EmptyListView.swift in Sources */,
@@ -505,6 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "CompliMap/Resources/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9VN5SEL4W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CompliMap/Resources/Info.plist;
@@ -539,6 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "CompliMap/Resources/Preview\\ Content";
+				DEVELOPMENT_TEAM = 9VN5SEL4W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CompliMap/Resources/Info.plist;
