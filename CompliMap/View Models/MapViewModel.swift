@@ -20,15 +20,17 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     public var latitude: Double
     public var longitude: Double
+    public var userLocationsRef: CollectionReference
     
     var locationManager: CLLocationManager?
     
-    var userLocationsRef = Firestore.firestore().collection("userLocationData")
+    
     
     init(user: User) {
         self.user = user
         latitude = 0
         longitude = 0
+        userLocationsRef = Firestore.firestore().collection("userLocationData").document(user.id).collection("pins")
     }
     
     func checkLocationServicesEnabled() {
@@ -56,16 +58,18 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
                 locationManager.startMonitoringSignificantLocationChanges()
                 locationManager.allowsBackgroundLocationUpdates = true
                 if locationManager.location != nil {
-                    region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MapDetails.defaultSpan)
-                    latitude = locationManager.location!.coordinate.latitude
-                    longitude = locationManager.location!.coordinate.longitude
-                    let userLocationData = UserLocationData(user: user, latitude: latitude, longitude: longitude, timestamp: Date.now)
-                    let document = userLocationsRef.document(userLocationData.id.uuidString)
-                    do {
-                        try document.setData(from: userLocationData)
-                    }
-                    catch {
-                        
+                    if checkTimeDifference() {
+                        region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MapDetails.defaultSpan)
+                        latitude = locationManager.location!.coordinate.latitude
+                        longitude = locationManager.location!.coordinate.longitude
+                        let userLocationData = UserLocationData(user: user, latitude: latitude, longitude: longitude, timestamp: Date.now)
+                        let document = userLocationsRef.document(userLocationData.id.uuidString)
+                        do {
+                            try document.setData(from: userLocationData)
+                        }
+                        catch {
+                            
+                        }
                     }
                 }
             @unknown default:
@@ -77,13 +81,39 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         checkLocationAuthorization()
     }
     
+    func checkTimeDifference() -> Bool {
+        var isTime: Bool = true
+        let query = userLocationsRef.order(by: "timestamp", descending: true).limit(to: 1)
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                return
+            }
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let locationData = document.data()
+                    let timestamp = locationData["timestamp"] as? Timestamp ?? Timestamp()
+                    let epochSeconds = timestamp.seconds
+                    let pinDate = Date(timeIntervalSince1970: TimeInterval(epochSeconds))
+                    let minuteDifference = Calendar.current.dateComponents([.minute], from: pinDate, to: Date.now).minute ?? 11
+                    if minuteDifference > 10 {
+                        isTime = true
+                    }
+                    else {
+                        isTime = false
+                    }
+                }
+            }
+        }
+        return isTime
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last ?? CLLocation(latitude: latitude, longitude: longitude)
-        if location.coordinate.latitude != latitude && location.coordinate.longitude != longitude {
-            latitude = location.coordinate.latitude
-            longitude = location.coordinate.longitude
-            let userLocationData = UserLocationData(user: user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: Date.now)
-            let document = userLocationsRef.document(userLocationData.id.uuidString)
+        if checkTimeDifference() {
+            let location: CLLocation = locations.last ?? CLLocation(latitude: latitude, longitude: longitude)
+            self.latitude = location.coordinate.latitude
+            self.longitude = location.coordinate.longitude
+            let userLocationData = UserLocationData(user: self.user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: Date.now)
+            let document = self.userLocationsRef.document(userLocationData.id.uuidString)
             do {
                 try document.setData(from: userLocationData)
             }
